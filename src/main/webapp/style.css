@@ -1,0 +1,11 @@
+.wrapper {
+    align-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.homepage {
+    height: 500px;
+    width: 500px;
+}
+

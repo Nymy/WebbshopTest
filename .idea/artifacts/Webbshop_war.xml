@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Webbshop:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Webbshop</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Webbshop-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Webbshop:war exploded" />
+    </root>
+  </artifact>
+</component>
