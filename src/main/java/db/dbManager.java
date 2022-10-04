@@ -16,7 +16,7 @@ public class dbManager {
     private dbManager(){
         try {
             Class.forName("org.postgresql.Driver").newInstance();
-            con = DriverManager.getConnection("postgres://postgres:mysecretpassword@localhost:5432/postgres");
+            con = DriverManager.getConnection("postgres://postgres:mysecretpassword@db:5432/postgres");
         }catch (Exception e) {e.printStackTrace();}
     }
 
