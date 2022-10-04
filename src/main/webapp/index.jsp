@@ -11,7 +11,7 @@
     <h1><%= "Welcome to the webbshop!" %>
     </h1>
     <img class="homepage" src="img/shop2.jpg">
-    <form>
+    <form method="post" action="/hello-servlet">
         <div class="card-details">
             <div class="card-box">
                 <span class="details">Username</span>
