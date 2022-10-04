@@ -1,4 +1,4 @@
-package com.example.webbshop;
+package ui;
 
 import java.io.*;
 
