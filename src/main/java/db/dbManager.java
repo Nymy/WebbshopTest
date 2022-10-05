@@ -14,12 +14,10 @@ public class dbManager {
     }
 
     private dbManager(){
-        String url = "jdbc:postgresql://localhost:5432/postgres";
-        String user = "postgres";
-        String password = "mysecretpassword";
+
         try {
-            Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection(url,user,password);
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/webbshop","root","groda1");
             System.out.println(con);
         }catch (Exception e) {
             e.printStackTrace();

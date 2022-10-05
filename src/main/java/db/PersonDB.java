@@ -1,27 +1,31 @@
 package db;
 
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Collection;
 import java.util.Vector;
 
 public class PersonDB extends bo.Person{
 
-    public static Collection searchUser (String username, String password){
+    public static Collection searchUser(String uname, String password){
         Vector v = new Vector();
 
         try {
+           // String query = "SELECT username AND password FROM T_Person WHERE username =" + uname + " AND password =" + password + ";";
             Connection con = dbManager.getConnection();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select username, password from t_person");
+            PreparedStatement st = con.prepareStatement("SELECT * FROM T_Person WHERE username = ? AND password = ?");
+            st.setString(1, uname);
+            st.setString(2, password);
+            ResultSet rs = st.executeQuery();
 
             while (rs.next()){
+                String fname = rs.getString("first_name");
+                String lname = rs.getString("last_name");
+                int postC = rs.getInt("postcode");
                 String user = rs.getString("username");
                 String pass = rs.getString("password");
-                v.add(new PersonDB("Viktor", "Lindström", 14152, user, pass));
+                System.out.println(fname + lname + postC + user + pass);
+                v.add(new PersonDB(fname, lname, postC, user, pass));
             }
         } catch (SQLException e){
             e.printStackTrace();}

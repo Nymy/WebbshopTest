@@ -1,5 +1,3 @@
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
 
 CREATE TABLE IF NOT EXISTS T_Person (
     first_name varchar(25) NOT NULL,
@@ -11,25 +9,25 @@ CREATE TABLE IF NOT EXISTS T_Person (
 
 
 CREATE TABLE IF NOT EXISTS T_Items(
-    itemID uuid DEFAULT uuid_generate_v4 () PRIMARY KEY,
+    itemID INT AUTO_INCREMENT PRIMARY KEY,
     item_name varchar(30),
-    price int NOT NULL,
+    price INT NOT NULL,
     quantity int NOT NULL
     );
 
-CREATE TYPE status AS ENUM ('processing', 'packed', 'sent');
+
 CREATE TABLE IF NOT EXISTS T_Order(
-    orderID uuid DEFAULT uuid_generate_v4 (),
-    total_amount int NOT NULL,
-    userID varchar (255) NOT NULL,
-    current_status status,
+    orderID INT AUTO_INCREMENT,
+    total_amount INT NOT NULL,
+    userID VARCHAR (255) NOT NULL,
+    current_status ENUM ('processing', 'packed', 'sent'),
     CONSTRAINT order_pk PRIMARY KEY (orderID, userID),
     CONSTRAINT userID FOREIGN KEY (userID) REFERENCES T_Person(username)
 );
 
 CREATE TABLE IF NOT EXISTS T_ItemsOrder(
-    orderID uuid NOT NULL,
-    itemID uuid NOT NULL,
+    orderID INT AUTO_INCREMENT NOT NULL ,
+    itemID INT NOT NULL,
     amount int NOT NULL,
     userID varchar(255) NOT NULL ,
     CONSTRAINT itemsorder_pk PRIMARY KEY (itemID, orderID, userID),
