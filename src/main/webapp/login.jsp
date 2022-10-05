@@ -1,4 +1,11 @@
-<%--
+<%@ page import="java.util.Collection" %>
+<%@ page import="ui.PersonInfo" %>
+<%@ page import="bo.PersonHandler" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: Nonno
   Date: 2022-10-04
@@ -11,6 +18,9 @@
     <title>Title</title>
 </head>
 <body>
-det här är log in
+
+
+
+
 </body>
 </html>

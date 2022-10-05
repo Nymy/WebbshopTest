@@ -11,11 +11,11 @@
     <h1><%= "Welcome to the webbshop!" %>
     </h1>
     <img class="homepage" src="img/shop2.jpg">
-    <form method="post" action="/hello-servlet">
+    <form method="post" action="/login.jsp">
         <div class="card-details">
             <div class="card-box">
                 <span class="details">Username</span>
-                <input type="text" placeholder="Enter e-mail">
+                <input type="text" placeholder="Enter e-mail :)">
             </div>
             <div class="card-box">
                 <span class="details">Password</span>
