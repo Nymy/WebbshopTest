@@ -14,10 +14,15 @@ public class dbManager {
     }
 
     private dbManager(){
+
         try {
-            Class.forName("org.postgresql.Driver").newInstance();
-            con = DriverManager.getConnection("postgres://postgres:mysecretpassword@db:5432/postgres");
-        }catch (Exception e) {e.printStackTrace();}
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/webbshop","root","groda1");
+        }catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Opened database successfully");
     }
 
     public static Connection getConnection(){

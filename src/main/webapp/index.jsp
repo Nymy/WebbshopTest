@@ -11,23 +11,12 @@
     <h1><%= "Welcome to the webbshop!" %>
     </h1>
     <img class="homepage" src="img/shop2.jpg">
-    <form method="post" action="/hello-servlet">
-        <div class="card-details">
-            <div class="card-box">
-                <span class="details">Username</span>
-                <input type="text" placeholder="Enter e-mail">
-            </div>
-            <div class="card-box">
-                <span class="details">Password</span>
-                <input type="text" placeholder="**********">
-            </div>
-            <div class="button">
-                <input type="submit" value="confirm">
-            </div>
-        </div>
+    <form method="post" action="/WebbshopTest_war_exploded/hello-servlet">
+    Username: <input type="text" name="user" placeholder="enter username" required = "required"><br>
+    Password: <input type="password" name="pass" placeholder="**********" required ="required"><br>
+        <input type="submit" value="SUBMIT">
     </form>
 </div>
+
 </body>
-
-
 </html>
