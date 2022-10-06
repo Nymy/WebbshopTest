@@ -26,6 +26,7 @@
 </form>
 <form method="post" action="/WebbshopTest_war_exploded/hello-servlet">
     <input type="hidden" name="task" value="showCart">
+    <input type="hidden" name="user" value=<%= session.getAttribute("username")%>>
     <input type="submit" value="Show Cart">
 </form>
 <% if (request.getAttribute("showItems") != null) { %>

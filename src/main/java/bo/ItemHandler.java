@@ -3,7 +3,6 @@ package bo;
 
 
 import ui.ItemInfo;
-import ui.PersonInfo;
 
 import java.util.ArrayList;
 import java.util.Collection;

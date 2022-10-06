@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Iterator;
 
+import bo.CartHandler;
 import bo.ItemHandler;
 import bo.PersonHandler;
 import jakarta.servlet.RequestDispatcher;
@@ -46,6 +47,9 @@ public class HelloServlet extends HttpServlet {
                 break;
             case "addItem":
                 addItem(req, resp);
+                break;
+            case "showCart":
+                showCart(req, resp);
                 break;
             default:
                 System.out.println("servlet switch case default");
@@ -108,7 +112,9 @@ public class HelloServlet extends HttpServlet {
         //CartHandler.addItemToCart
     }
 
-
+    private void showCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        CartHandler.showCart(req.getParameter("user"));
+    }
 
     public void destroy() {
     }

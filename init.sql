@@ -39,6 +39,9 @@ CREATE TABLE IF NOT EXISTS T_ItemsOrder(
 INSERT INTO T_Person (first_name, last_name, postcode, username, password)
 VALUES ('Viktor', 'Lindström', 14152, 'viktor', 'groda');
 
+INSERT INTO T_Order (total_amount, userID, current_status)
+VALUES (0, 'viktor', 'processing');
+
 INSERT INTO T_Items (item_name, price, quantity)
 VALUES ('Chips', 25, 10);
 INSERT INTO T_Items (item_name, price, quantity)
