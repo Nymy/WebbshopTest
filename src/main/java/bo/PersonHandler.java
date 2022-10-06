@@ -9,7 +9,6 @@ import java.util.Iterator;
 public class PersonHandler {
 
     public static ArrayList<PersonInfo> getPerson(String username, String password){
-        System.out.println(username + password + "GRODA");
         Collection c = Person.searchUser(username, password);
         ArrayList<PersonInfo> person = new ArrayList<PersonInfo>();
         for (Iterator it = c.iterator(); it.hasNext();){

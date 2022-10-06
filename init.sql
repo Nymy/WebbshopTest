@@ -38,3 +38,12 @@ CREATE TABLE IF NOT EXISTS T_ItemsOrder(
 
 INSERT INTO T_Person (first_name, last_name, postcode, username, password)
 VALUES ('Viktor', 'Lindström', 14152, 'viktor', 'groda');
+
+INSERT INTO T_Items (item_name, price, quantity)
+VALUES ('Chips', 25, 10);
+INSERT INTO T_Items (item_name, price, quantity)
+VALUES ('Gurka', 20, 10);
+INSERT INTO T_Items (item_name, price, quantity)
+VALUES ('Choklad', 20, 10);
+INSERT INTO T_Items (item_name, price, quantity)
+VALUES ('Vattenflaska', 35, 2);
