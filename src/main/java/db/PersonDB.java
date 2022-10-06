@@ -24,7 +24,6 @@ public class PersonDB extends bo.Person{
                 int postC = rs.getInt("postcode");
                 String user = rs.getString("username");
                 String pass = rs.getString("password");
-                System.out.println(fname + lname + postC + user + pass);
                 v.add(new PersonDB(fname, lname, postC, user, pass));
             }
         } catch (SQLException e){
