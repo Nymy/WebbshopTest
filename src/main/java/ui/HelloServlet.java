@@ -50,6 +50,7 @@ public class HelloServlet extends HttpServlet {
     }
 
     private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        HttpSession session = req.getSession();
         String username = req.getParameter("user");
         String pwd = req.getParameter("pass");
         RequestDispatcher dis = null;
@@ -72,7 +73,7 @@ public class HelloServlet extends HttpServlet {
             for (; p.hasNext(); ) {
                 PersonInfo pe = p.next();
                 if (username.equals(pe.getUsername()) && pwd.equals(pe.getPassword())) {
-                    req.setAttribute("username", username);
+                    session.setAttribute("username", username);
                     dis = req.getRequestDispatcher("/homePage.jsp");
                     dis.forward(req, resp);
                 }
