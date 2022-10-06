@@ -44,6 +44,9 @@ public class HelloServlet extends HttpServlet {
                 System.out.println("getAllItems");
                 getAllItems(req, resp);
                 break;
+            case "addItem":
+                addItem(req, resp);
+                break;
             default:
                 System.out.println("servlet switch case default");
         }
@@ -98,6 +101,11 @@ public class HelloServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void addItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        System.out.println("addItem" + " " + req.getParameter("itemId") + " " + req.getParameter("user"));
+        //CartHandler.addItemToCart
     }
 
 

@@ -18,11 +18,17 @@
 
 </head>
 <body>
-<h1>Hello <%= session.getAttribute("username")%></h1>
+<h1>Hello <%= session.getAttribute("username")%>
+</h1>
 <form method="post" action="/WebbshopTest_war_exploded/hello-servlet">
     <input type="hidden" name="task" value="getAllItems">
-    <input type="submit" value="Show Items" >
+    <input type="submit" value="Show Items">
 </form>
+<form method="post" action="/WebbshopTest_war_exploded/hello-servlet">
+    <input type="hidden" name="task" value="showCart">
+    <input type="submit" value="Show Cart">
+</form>
+<% if (request.getAttribute("showItems") != null) { %>
 <table>
     <thead>
     <tr>
@@ -34,27 +40,40 @@
     </thead>
     <tbody>
     <%
-        if(request.getAttribute("showItems") != null){
-            int i = 1;
-            Collection<ItemInfo> items = (Collection) request.getAttribute("showItems");
-            Iterator<ItemInfo> it = items.iterator();
+        int i = 1;
+        Collection<ItemInfo> items = (Collection) request.getAttribute("showItems");
+        Iterator<ItemInfo> it = items.iterator();
     %>
     <%
-        for(; it.hasNext();){
+        for (; it.hasNext(); ) {
             ItemInfo item = it.next();
     %>
-
     <tr>
-        <td><%= item.getiName()%></td>
-        <td><%= item.getPrice()%></td>
-        <td><%= item.getQuantity()%></td>
-        <td><%= item.getItemID()%></td>
+        <td><%= item.getiName()%>
+        </td>
+
+        <td><%= item.getPrice()%>
+        </td>
+        <td><%= item.getQuantity()%>
+        </td>
+        <td><%= item.getItemID()%>
+        </td>
+        <td>
+            <form method="post" action="/WebbshopTest_war_exploded/hello-servlet">
+                <input type="hidden" name="itemId" value=<%= item.getItemID()%>>
+                <input type="hidden" name="task" value="addItem">
+                <input type="hidden" name="user" value=<%= session.getAttribute("username")%>>
+                <input type="submit" value="Add item to cart" >
+            </form>
+        </td>
     </tr>
 
     <%
-            }}
+            }
+        }
     %>
     </tbody>
+
 </table>
 </body>
 </html>
