@@ -9,7 +9,6 @@ public class ItemDB extends bo.Item{
 
     public static Collection searchItems(){
         Vector v = new Vector();
-
         try {
             Connection con = dbManager.getConnection();
             PreparedStatement st = con.prepareStatement("SELECT * FROM t_items");

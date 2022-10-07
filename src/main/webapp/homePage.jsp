@@ -20,6 +20,7 @@
 <body>
 <h1>Hello <%= session.getAttribute("username")%>
 </h1>
+<div class="homeButtons" >
 <form method="post" action="/WebbshopTest_war_exploded/hello-servlet">
     <input type="hidden" name="task" value="getAllItems">
     <input type="submit" value="Show Items">
@@ -29,6 +30,7 @@
     <input type="hidden" name="user" value=<%= session.getAttribute("username")%>>
     <input type="submit" value="Show Cart">
 </form>
+</div>
 <% if (request.getAttribute("showItems") != null) { %>
 <table>
     <thead>

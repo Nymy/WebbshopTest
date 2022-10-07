@@ -30,11 +30,18 @@ CREATE TABLE IF NOT EXISTS T_ItemsOrder(
     itemID INT NOT NULL,
     amount int NOT NULL,
     userID varchar(255) NOT NULL ,
-    CONSTRAINT itemsorder_pk PRIMARY KEY (itemID, orderID, userID),
     CONSTRAINT orderid_fk FOREIGN KEY (orderID,userID) REFERENCES T_Order (orderID,userID),
     CONSTRAINT itemid_fk FOREIGN KEY (itemID) REFERENCES T_Items(itemID),
     CHECK ( amount >= 0 )
 );
+
+INSERT INTO T_ItemsOrder (orderID, itemID, amount, userID)
+VALUES (1, 1, 1, 'viktor');
+
+INSERT INTO T_ItemsOrder (orderID, itemID, amount, userID)
+VALUES (1, 2, 1, 'viktor');
+
+
 
 INSERT INTO T_Person (first_name, last_name, postcode, username, password)
 VALUES ('Viktor', 'Lindström', 14152, 'viktor', 'groda');

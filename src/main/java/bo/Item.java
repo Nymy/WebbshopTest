@@ -22,6 +22,12 @@ public class Item {
         this.quantity = quantity;
     }
 
+    public Item(String iName, int price, int itemID) {
+        this.itemID = itemID;
+        this.iName = iName;
+        this.price = price;
+    }
+
     public int getItemID() {
         return itemID;
     }
@@ -52,5 +58,9 @@ public class Item {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String toString(){
+        return iName + " " + price + " " + itemID;
     }
 }

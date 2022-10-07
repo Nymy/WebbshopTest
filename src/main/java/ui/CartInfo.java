@@ -1,22 +1,32 @@
 package ui;
 
 import bo.Item;
+import bo.cartStatus;
+
 import java.util.ArrayList;
 
 public class CartInfo {
-    enum cartStatus {processing, packed, sent}
     private int orderID;
     private int total_amount;
     private String userID;
 
     private cartStatus status;
-    private ArrayList<Item> items;
+    private ArrayList<ItemInfo> items;
 
     public CartInfo(int orderID, int total_amount, String userID) {
         this.orderID = orderID;
         this.total_amount = total_amount;
         this.userID = userID;
-        this.status = cartStatus.processing;
+        this.status = cartStatus.PROCESSING;
+        items = null;
+    }
+
+    public CartInfo(int orderID, int total_amount, String userID, ArrayList itemsincart) {
+        this.orderID = orderID;
+        this.total_amount = total_amount;
+        this.userID = userID;
+        this.status = cartStatus.PROCESSING;
+        items = itemsincart;
     }
 
     public int getOrderID() {
@@ -43,10 +53,31 @@ public class CartInfo {
         this.userID = userID;
     }
 
-    public void addItems(Item item){
+    public ArrayList<ItemInfo> getItems() {
+        return items;
+    }
+
+    public void addItems(ArrayList item){
+        this.items = item;
+    }
+
+    public void addItems(String iName, int price, int itemID){
+        ItemInfo item = new ItemInfo(iName, price, itemID);
+
         if (items == null){
             items = new ArrayList<>();
         }
         items.add(item);
+    }
+
+    @Override
+    public String toString() {
+        return "CartInfo{" +
+                "orderID=" + orderID +
+                ", total_amount=" + total_amount +
+                ", userID='" + userID + '\'' +
+                ", status=" + status +
+                ", items=" + items +
+                '}';
     }
 }

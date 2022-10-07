@@ -1,6 +1,8 @@
 package bo;
 
 import ui.CartInfo;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -12,9 +14,24 @@ public class CartHandler {
         ArrayList<CartInfo> cart = new ArrayList<CartInfo>();
         for (Iterator it = c.iterator(); it.hasNext();){
             Cart cItem = (Cart) it.next();
-            cart.add(new CartInfo(cItem.getOrderID(), cItem.getTotal_amount(), cItem.getUserID()));
+            CartInfo temp = new CartInfo(cItem.getOrderID(), cItem.getTotal_amount(), cItem.getUserID());
+            ArrayList<Item> itemArrayList = cItem.getItems();
+            for(int i = 0; i < itemArrayList.size(); i++){
+                temp.addItems(itemArrayList.get(i).getiName(), itemArrayList.get(i).getPrice(), itemArrayList.get(i).getItemID());
+            }
+            cart.add(temp);
         }
         return cart;
     }
+
+    public static void addToCart (String username, int itemID){
+        Cart.addToCart(username, itemID);
+    }
+
+    public static void removeFromCart ( int itemID, int orderID){
+        Cart.removeFromCart( itemID, orderID);
+    }
+
+
 }
 
