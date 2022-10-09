@@ -69,8 +69,8 @@ public class Cart {
     }
 
     //ha kvar?
-    public void addItems(String iName, int price, int itemID){
-        Item item = new Item(iName, price, itemID);
+    public void addItems(String iName, int price, int itemID, int amount){
+        Item item = new Item(itemID, iName, price, amount);
 
         if (items == null){
             items = new ArrayList<>();

@@ -17,7 +17,7 @@ public class CartHandler {
             CartInfo temp = new CartInfo(cItem.getOrderID(), cItem.getTotal_amount(), cItem.getUserID());
             ArrayList<Item> itemArrayList = cItem.getItems();
             for(int i = 0; i < itemArrayList.size(); i++){
-                temp.addItems(itemArrayList.get(i).getiName(), itemArrayList.get(i).getPrice(), itemArrayList.get(i).getItemID());
+                temp.addItems(itemArrayList.get(i).getiName(), itemArrayList.get(i).getPrice(), itemArrayList.get(i).getItemID(), itemArrayList.get(i).getQuantity());
             }
             cart.add(temp);
         }

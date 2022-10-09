@@ -61,8 +61,8 @@ public class CartInfo {
         this.items = item;
     }
 
-    public void addItems(String iName, int price, int itemID){
-        ItemInfo item = new ItemInfo(iName, price, itemID);
+    public void addItems(String iName, int price, int itemID, int amount){
+        ItemInfo item = new ItemInfo(itemID, iName, price, amount);
 
         if (items == null){
             items = new ArrayList<>();

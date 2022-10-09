@@ -22,12 +22,6 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public Item(String iName, int price, int itemID) {
-        this.itemID = itemID;
-        this.iName = iName;
-        this.price = price;
-    }
-
     public int getItemID() {
         return itemID;
     }

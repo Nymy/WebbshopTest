@@ -115,8 +115,9 @@ public class HelloServlet extends HttpServlet {
         RequestDispatcher dis = null;
         try {
             CartHandler.addToCart(req.getParameter("user"), Integer.valueOf(req.getParameter("itemId")));
-            dis = req.getRequestDispatcher("/homePage.jsp");
-            dis.forward(req, resp);
+            //temp out
+            //dis = req.getRequestDispatcher("/homePage.jsp");
+            //dis.forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
         }
