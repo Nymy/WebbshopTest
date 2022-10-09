@@ -16,6 +16,17 @@
 </head>
 <body>
 <h1>Your cart</h1>
+<div class="homeButtons" >
+    <form method="post" action="/WebbshopTest_war_exploded/hello-servlet">
+        <input type="hidden" name="task" value="getAllItems">
+        <input type="submit" value="Show Items">
+    </form>
+    <form method="post" action="/WebbshopTest_war_exploded/hello-servlet">
+        <input type="hidden" name="task" value="showCart">
+        <input type="hidden" name="user" value=<%= session.getAttribute("username")%>>
+        <input type="submit" value="Show Cart">
+    </form>
+</div>
 <% if (request.getAttribute("showCart") != null) { %>
 <table>
     <thead>
@@ -28,9 +39,10 @@
     </thead>
     <tbody>
     <%
+        int total = 0;
         ArrayList<ItemInfo> item = (ArrayList<ItemInfo>) request.getAttribute("showCart");
         for (int i = 0; i < item.size(); i++) {
-
+            total = total + item.get(i).getPrice() * item.get(i).getQuantity();
     %>
     <tr>
         <td><%= item.get(i).getiName()%></td>
@@ -49,10 +61,15 @@
 
     <%
             }
-        }
     %>
+
     </tbody>
 </table>
+<p>your total price is: <%=total%> dollar</p>
+<%
+
+    }
+%>
 <% if (request.getAttribute("showCart") == null) { %>
 <h2>Cart is empty..</h2>
 <%}%>
