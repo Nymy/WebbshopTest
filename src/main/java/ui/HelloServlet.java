@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Iterator;
 
+import bo.CartHandler;
 import bo.ItemHandler;
 import bo.PersonHandler;
 import jakarta.servlet.RequestDispatcher;
@@ -46,6 +47,13 @@ public class HelloServlet extends HttpServlet {
                 break;
             case "addItem":
                 addItem(req, resp);
+                break;
+            case "removeItem":
+                System.out.println("in remove item" + req.getParameter("itemId"));
+                removeItem(req, resp);
+                break;
+            case "showCart":
+                showCart(req, resp);
                 break;
             default:
                 System.out.println("servlet switch case default");
@@ -104,11 +112,47 @@ public class HelloServlet extends HttpServlet {
     }
 
     private void addItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        System.out.println("addItem" + " " + req.getParameter("itemId") + " " + req.getParameter("user"));
-        //CartHandler.addItemToCart
+        RequestDispatcher dis = null;
+        try {
+            CartHandler.addToCart(req.getParameter("user"), Integer.valueOf(req.getParameter("itemId")));
+            //temp out
+            //dis = req.getRequestDispatcher("/homePage.jsp");
+            //dis.forward(req, resp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+    private void removeItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        RequestDispatcher dis = null;
+        try {
+            System.out.println(req.getParameter("itemId") + " removeItem itemId");
+            System.out.println(req.getParameter("orderID") + " removeItem orderID");
+            CartHandler.removeFromCart( Integer.valueOf(req.getParameter("itemId")), Integer.valueOf(req.getParameter("orderID")));
+            dis = req.getRequestDispatcher("/cart.jsp");
+            dis.forward(req, resp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void showCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        RequestDispatcher dis = null;
+        try {
+            Collection<CartInfo> cart = CartHandler.showCart(req.getParameter("user"));
+            Iterator<CartInfo> it = cart.iterator();
+
+            for (; it.hasNext();){
+                CartInfo iCart = it.next();
+                req.setAttribute("showCart", cart.iterator().next().getItems());
+                req.setAttribute("orderID", cart.iterator().next().getOrderID());
+            }
+            dis = req.getRequestDispatcher("/cart.jsp");
+            dis.forward(req, resp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void destroy() {
     }

@@ -14,6 +14,12 @@ public class ItemInfo {
         this.quantity = quantity;
     }
 
+    public ItemInfo(String iName, int price, int itemID) {
+        this.itemID = itemID;
+        this.iName = iName;
+        this.price = price;
+    }
+
     public int getItemID() {
         return itemID;
     }
@@ -28,6 +34,11 @@ public class ItemInfo {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    @Override
+    public String toString() {
+        return itemID + " " + iName + " " + price;
     }
 }
 
