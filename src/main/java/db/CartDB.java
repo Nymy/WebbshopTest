@@ -63,9 +63,8 @@ public class CartDB extends bo.Cart{
 
             PreparedStatement getOrder = con.prepareStatement("SELECT * FROM t_order WHERE userID = ? AND current_status = 'processing'");
             getOrder.setString(1, username);
-            getOrder.executeQuery();
             ResultSet rs = getOrder.executeQuery();
-            //create a processing order if it doesn't exist
+
             int orderID = 0;
             boolean orderExists = false;
             while(rs.next()){
@@ -73,17 +72,29 @@ public class CartDB extends bo.Cart{
                 orderExists = true;
             }
 
+            if(!orderExists){
+                PreparedStatement insertOrder = con.prepareStatement("INSERT INTO T_Order(userID, current_status) VALUES (?, 'processing');");
+                insertOrder.setString(1, username);
+                insertOrder.executeUpdate();
+
+                PreparedStatement getOrderId = con.prepareStatement("SELECT * FROM t_order WHERE userID = ? AND current_status = 'processing'");
+                getOrderId.setString(1, username);
+                ResultSet rs2 = getOrderId.executeQuery();
+                while(rs2.next()){
+                    orderID = rs2.getInt("orderID");
+                }
+            }
+
             PreparedStatement get = con.prepareStatement("SELECT * FROM t_itemsorder WHERE userID = ? AND itemID = ? AND orderID = ?");
             get.setString(1, username);
             get.setInt(2, itemId);
             get.setInt(3, orderID);
-            get.executeQuery();
-            ResultSet rs2 = get.executeQuery();
+            ResultSet rs3 = get.executeQuery();
 
             int amount = 0;
             boolean exist = false;
-            while (rs2.next()) {
-                amount = rs2.getInt("amount");
+            while (rs3.next()) {
+                amount = rs3.getInt("amount");
                 exist = true;
             }
 
