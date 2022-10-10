@@ -11,7 +11,6 @@ public class PersonDB extends bo.Person{
         Vector v = new Vector();
 
         try {
-           // String query = "SELECT username AND password FROM T_Person WHERE username =" + uname + " AND password =" + password + ";";
             Connection con = dbManager.getConnection();
             PreparedStatement st = con.prepareStatement("SELECT * FROM T_Person WHERE username = ? AND password = ?");
             st.setString(1, uname);

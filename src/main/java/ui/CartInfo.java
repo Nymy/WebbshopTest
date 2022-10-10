@@ -1,6 +1,5 @@
 package ui;
 
-import bo.Item;
 import bo.cartStatus;
 
 import java.util.ArrayList;
@@ -63,7 +62,6 @@ public class CartInfo {
 
     public void addItems(String iName, int price, int itemID, int amount){
         ItemInfo item = new ItemInfo(itemID, iName, price, amount);
-
         if (items == null){
             items = new ArrayList<>();
         }

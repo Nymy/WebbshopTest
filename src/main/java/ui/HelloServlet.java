@@ -1,8 +1,6 @@
 package ui;
 
-import java.io.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -42,7 +40,6 @@ public class HelloServlet extends HttpServlet {
                 login(req, resp);
                 break;
             case "logout":
-                System.out.println("logout");
                 break;
             case "getAllItems":
                 getAllItems(req, resp);
@@ -65,7 +62,7 @@ public class HelloServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String username = req.getParameter("user");
         String pwd = req.getParameter("pass");
-        RequestDispatcher dis = null;
+        RequestDispatcher dis;
 
         if (username == null || username.equals("")) {
             dis = req.getRequestDispatcher("/errorLogin.jsp");
@@ -89,7 +86,6 @@ public class HelloServlet extends HttpServlet {
                     dis = req.getRequestDispatcher("/homePage.jsp");
                     dis.forward(req, resp);
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,11 +96,7 @@ public class HelloServlet extends HttpServlet {
         RequestDispatcher dis;
         try {
             Collection<ItemInfo> items = ItemHandler.getItems();
-            Iterator<ItemInfo> it = items.iterator();
-            for (; it.hasNext();){
-                ItemInfo item = it.next();
-                req.setAttribute("showItems", items);
-            }
+            req.setAttribute("showItems", items);
             dis = req.getRequestDispatcher("/homePage.jsp");
             dis.forward(req, resp);
         } catch (Exception e) {
@@ -116,41 +108,30 @@ public class HelloServlet extends HttpServlet {
         RequestDispatcher dis = null;
         try {
             CartHandler.addToCart(req.getParameter("user"), Integer.valueOf(req.getParameter("itemId")));
-
             req.setAttribute("loop", "getAllItems");
             doPost(req, resp);
-
-            //dis = req.getRequestDispatcher("/homePage.jsp");
-            //dis.forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void removeItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        RequestDispatcher dis = null;
         try {
-            System.out.println(req.getParameter("itemId") + " removeItem itemId");
-            System.out.println(req.getParameter("orderID") + " removeItem orderID");
             CartHandler.removeFromCart( Integer.valueOf(req.getParameter("itemId")), Integer.valueOf(req.getParameter("orderID")));
-
             req.setAttribute("loop", "showCart");
             doPost(req, resp);
-            //dis = req.getRequestDispatcher("/cart.jsp");
-            //dis.forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void showCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        RequestDispatcher dis = null;
+        RequestDispatcher dis;
         try {
             Collection<CartInfo> cart = CartHandler.showCart(req.getParameter("user"));
             Iterator<CartInfo> it = cart.iterator();
-
             for (; it.hasNext();){
-                CartInfo iCart = it.next();
+                it.next();
                 req.setAttribute("showCart", cart.iterator().next().getItems());
                 req.setAttribute("orderID", cart.iterator().next().getOrderID());
             }

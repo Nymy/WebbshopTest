@@ -1,7 +1,6 @@
 package bo;
 
 import db.PersonDB;
-
 import java.util.Collection;
 
 public class Person {
@@ -59,5 +58,16 @@ static public Collection searchUser(String u, String p){
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", postcode=" + postcode +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
