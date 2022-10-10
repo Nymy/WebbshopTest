@@ -1,14 +1,13 @@
 package db;
 
-
 import java.sql.*;
 import java.util.Collection;
 import java.util.Vector;
 
 public class CartDB extends bo.Cart{
 
-    public CartDB(int orderID, int total_amount, String userID) {
-        super(orderID, total_amount, userID);
+    public CartDB(int orderID, String userID) {
+        super(orderID, userID);
     }
 
     public static Collection showCart(String username){
@@ -17,7 +16,7 @@ public class CartDB extends bo.Cart{
         CartDB cart = null;
         try {
             con = dbManager.getConnection();
-            PreparedStatement test = con.prepareStatement(" SELECT t_order.orderID, total_amount, t_order.userID, current_status, t_itemsorder.itemID, t_itemsorder.amount, " +
+            PreparedStatement test = con.prepareStatement(" SELECT t_order.orderID, t_order.userID, current_status, t_itemsorder.itemID, t_itemsorder.amount, " +
                     "item_name, price " +
                     "FROM t_order, t_itemsorder, t_items " +
                     "WHERE t_order.userID = ?" +
@@ -29,14 +28,13 @@ public class CartDB extends bo.Cart{
 
             while (rs.next()){
                 int orderID = rs.getInt("orderID");
-                int total = rs.getInt("total_amount");
                 String userID = rs.getString("userID");
                 String iName = rs.getString("item_name");
                 int price = rs.getInt("price");
                 int item_id = rs.getInt("itemID");
                 int amount = rs.getInt("amount");
                 if(cart == null)
-                    cart = new CartDB(orderID,total,userID);
+                    cart = new CartDB(orderID,userID);
                 cart.addItems(iName, price,item_id, amount);
             }
         } catch (SQLException e){

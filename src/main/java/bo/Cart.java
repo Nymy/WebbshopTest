@@ -7,9 +7,7 @@ import java.util.Collection;
 public class Cart {
 
     private int orderID;
-    private int total_amount;
     private String userID;
-
     private cartStatus status;
     private ArrayList<Item> items;
 
@@ -24,9 +22,9 @@ public class Cart {
     static public void removeFromCart( int itemID, int orderID){
         CartDB.removeFromCart( itemID, orderID);
     }
-    public Cart(int orderID, int total_amount, String userID) {
+    protected Cart(int orderID,String userID) {
         this.orderID = orderID;
-        this.total_amount = total_amount;
+
         this.userID = userID;
         this.status = cartStatus.PROCESSING;
     }
@@ -37,14 +35,6 @@ public class Cart {
 
     public void setOrderID(int orderID) {
         this.orderID = orderID;
-    }
-
-    public int getTotal_amount() {
-        return total_amount;
-    }
-
-    public void setTotal_amount(int total_amount) {
-        this.total_amount = total_amount;
     }
 
     public String getUserID() {
@@ -78,7 +68,6 @@ public class Cart {
     public String toString() {
         return "Cart{" +
                 "orderID=" + orderID +
-                ", total_amount=" + total_amount +
                 ", userID='" + userID + '\'' +
                 ", status=" + status +
                 ", items=" + items +

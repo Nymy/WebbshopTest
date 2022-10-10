@@ -15,7 +15,7 @@ public class CartHandler {
         for (Iterator it = c.iterator(); it.hasNext();){
             Cart cItem = (Cart) it.next();
             if(cItem != null) {
-                CartInfo temp = new CartInfo(cItem.getOrderID(), cItem.getTotal_amount(), cItem.getUserID());
+                CartInfo temp = new CartInfo(cItem.getOrderID(), cItem.getUserID());
                 ArrayList<Item> itemArrayList = cItem.getItems();
                 for (int i = 0; i < itemArrayList.size(); i++) {
                     temp.addItems(itemArrayList.get(i).getiName(), itemArrayList.get(i).getPrice(), itemArrayList.get(i).getItemID(), itemArrayList.get(i).getQuantity());

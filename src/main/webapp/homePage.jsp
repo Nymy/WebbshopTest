@@ -35,7 +35,6 @@
                     <tr>
                         <th>Name</th>
                         <th>Price</th>
-                        <th>Amount</th>
                         <th> </th>
                     </tr>
                 </thead>
@@ -52,7 +51,6 @@
                     <td><%= item.getiName()%></td>
 
                     <td><%= item.getPrice()%></td>
-                    <td><%= item.getQuantity()%></td>
                     <td>
                         <form method="post" action="/WebbshopTest_war_exploded/hello-servlet">
                             <input type="hidden" name="itemId" value=<%= item.getItemID()%>>
