@@ -40,6 +40,7 @@ public class HelloServlet extends HttpServlet {
                 login(req, resp);
                 break;
             case "logout":
+                logout(req, resp);
                 break;
             case "getAllItems":
                 getAllItems(req, resp);
@@ -92,6 +93,14 @@ public class HelloServlet extends HttpServlet {
         }
     }
 
+    private void logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        HttpSession session = req.getSession();
+        RequestDispatcher dis;
+        session.removeAttribute("username");
+        dis = req.getRequestDispatcher("/index.jsp");
+        dis.forward(req, resp);
+    }
+
     private void getAllItems(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         RequestDispatcher dis;
         try {
@@ -105,7 +114,6 @@ public class HelloServlet extends HttpServlet {
     }
 
     private void addItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        RequestDispatcher dis = null;
         try {
             CartHandler.addToCart(req.getParameter("user"), Integer.valueOf(req.getParameter("itemId")));
             req.setAttribute("loop", "getAllItems");

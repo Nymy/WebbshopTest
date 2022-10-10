@@ -15,6 +15,10 @@
         <h1>Your cart</h1>
         <div class="homeButtons" >
             <form method="post" action="/WebbshopTest_war_exploded/hello-servlet">
+                <input type="hidden" name="task" value="logout">
+                <input type="submit" value="Logout">
+            </form>
+            <form method="post" action="/WebbshopTest_war_exploded/hello-servlet">
                 <input type="hidden" name="task" value="getAllItems">
                 <input type="submit" value="Show Items">
             </form>

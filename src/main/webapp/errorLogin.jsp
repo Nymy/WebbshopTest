@@ -5,7 +5,6 @@
         <title>Login failed</title>
         <link rel="stylesheet" href="style.css">
     </head>
-
     <body>
         <div class="wrapper">
             <h1><%= "Welcome to the webbshop!" %></h1>
@@ -14,6 +13,7 @@
                 <font color="red">Wrong credentials</font> <br>
                 Username: <input type="text" name="user" placeholder="enter username" required="required"><br>
                 Password: <input type="password" name="pass" placeholder="**********" required="required"><br>
+                <input type="hidden" name="task" value="login">
                 <input type="submit" value="SUBMIT">
             </form>
         </div>
