@@ -1,8 +1,6 @@
 package bo;
 
 import db.ItemDB;
-import db.PersonDB;
-
 import java.util.Collection;
 
 public class Item {
@@ -55,6 +53,6 @@ public class Item {
     }
 
     public String toString(){
-        return iName + " " + price + " " + itemID;
+        return iName + " " + price + " " + itemID + " " + quantity;
     }
 }

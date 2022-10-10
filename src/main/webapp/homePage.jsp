@@ -1,10 +1,6 @@
 <%@ page import="java.util.Collection" %>
-<%@ page import="ui.PersonInfo" %>
-<%@ page import="bo.PersonHandler" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="bo.Person" %>
-<%@ page import="ui.ItemInfo" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="ui.ItemInfo" %><%--
   Created by IntelliJ IDEA.
   User: Nonno
   Date: 2022-10-04
@@ -41,7 +37,6 @@
                 </thead>
                 <tbody>
                 <%
-                    int i = 1;
                     Collection<ItemInfo> items = (Collection) request.getAttribute("showItems");
                     Iterator<ItemInfo> it = items.iterator();
                 %>

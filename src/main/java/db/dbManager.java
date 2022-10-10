@@ -14,7 +14,6 @@ public class dbManager {
     }
 
     private dbManager(){
-
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/webbshop","root","viktor");
@@ -22,7 +21,6 @@ public class dbManager {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-        System.out.println("Opened database successfully");
     }
 
     public static Connection getConnection(){

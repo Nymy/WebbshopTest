@@ -1,7 +1,6 @@
 package bo;
 
 import db.CartDB;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -61,24 +60,28 @@ public class Cart {
             items = new ArrayList<>();
         }
         items.add(item);
-        System.out.println(item + " has been added to cart");
     }
 
     public ArrayList<Item> getItems() {
         return items;
     }
 
-    //ha kvar?
     public void addItems(String iName, int price, int itemID, int amount){
         Item item = new Item(itemID, iName, price, amount);
-
         if (items == null){
             items = new ArrayList<>();
         }
         items.add(item);
     }
 
-    public String toString(){
-        return userID.toString() + " "  + items.toString();
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "orderID=" + orderID +
+                ", total_amount=" + total_amount +
+                ", userID='" + userID + '\'' +
+                ", status=" + status +
+                ", items=" + items +
+                '}';
     }
 }

@@ -1,6 +1,3 @@
-<%@ page import="ui.CartInfo" %>
-<%@ page import="java.util.Collection" %>
-<%@ page import="java.util.Iterator" %>
 <%@ page import="ui.ItemInfo" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
@@ -62,9 +59,7 @@
             </tbody>
         </table>
         <p>your total price is: <%=total%> dollar</p>
-        <%
-            }
-        %>
+    <%  }   %>
         <% if (request.getAttribute("showCart") == null) { %>
             <h2>Cart is empty..</h2>
     <%  } %>
