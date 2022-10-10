@@ -51,6 +51,8 @@ VALUES ('Choklad', 20, 10);
 INSERT INTO T_Items (item_name, price, quantity)
 VALUES ('Vattenflaska', 35, 2);
 
+
+
 INSERT INTO T_ItemsOrder (orderID, itemID, amount, userID)
 VALUES (1, 1, 1, 'viktor');
 

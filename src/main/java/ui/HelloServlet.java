@@ -33,23 +33,24 @@ public class HelloServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        switch (req.getParameter("task")){
+        String task = req.getParameter("task");
+        if(req.getAttribute("loop") != null)
+            task = req.getAttribute("loop").toString();
+
+        switch (task){
             case "login":
-                System.out.println("login");
                 login(req, resp);
                 break;
             case "logout":
                 System.out.println("logout");
                 break;
             case "getAllItems":
-                System.out.println("getAllItems");
                 getAllItems(req, resp);
                 break;
             case "addItem":
                 addItem(req, resp);
                 break;
             case "removeItem":
-                System.out.println("in remove item" + req.getParameter("itemId"));
                 removeItem(req, resp);
                 break;
             case "showCart":
@@ -96,7 +97,7 @@ public class HelloServlet extends HttpServlet {
     }
 
     private void getAllItems(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        RequestDispatcher dis = null;
+        RequestDispatcher dis;
         try {
             Collection<ItemInfo> items = ItemHandler.getItems();
             Iterator<ItemInfo> it = items.iterator();
@@ -115,7 +116,10 @@ public class HelloServlet extends HttpServlet {
         RequestDispatcher dis = null;
         try {
             CartHandler.addToCart(req.getParameter("user"), Integer.valueOf(req.getParameter("itemId")));
-            //temp out
+
+            req.setAttribute("loop", "getAllItems");
+            doPost(req, resp);
+
             //dis = req.getRequestDispatcher("/homePage.jsp");
             //dis.forward(req, resp);
         } catch (Exception e) {
@@ -129,8 +133,11 @@ public class HelloServlet extends HttpServlet {
             System.out.println(req.getParameter("itemId") + " removeItem itemId");
             System.out.println(req.getParameter("orderID") + " removeItem orderID");
             CartHandler.removeFromCart( Integer.valueOf(req.getParameter("itemId")), Integer.valueOf(req.getParameter("orderID")));
-            dis = req.getRequestDispatcher("/cart.jsp");
-            dis.forward(req, resp);
+
+            req.setAttribute("loop", "showCart");
+            doPost(req, resp);
+            //dis = req.getRequestDispatcher("/cart.jsp");
+            //dis.forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
         }
