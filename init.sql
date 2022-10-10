@@ -18,7 +18,6 @@ CREATE TABLE IF NOT EXISTS T_Items(
 
 CREATE TABLE IF NOT EXISTS T_Order(
     orderID INT AUTO_INCREMENT,
-    total_amount INT NOT NULL,
     userID VARCHAR (255) NOT NULL,
     current_status ENUM ('processing', 'packed', 'sent'),
     CONSTRAINT order_pk PRIMARY KEY (orderID, userID),
@@ -39,7 +38,7 @@ CREATE TABLE IF NOT EXISTS T_ItemsOrder(
 INSERT INTO T_Person (first_name, last_name, postcode, username, password)
 VALUES ('Viktor', 'Lindström', 14152, 'viktor', 'groda');
 
-INSERT INTO T_Order (total_amount, userID, current_status)
+INSERT INTO T_Order ( userID, current_status)
 VALUES (0, 'viktor', 'processing');
 
 INSERT INTO T_Items (item_name, price, quantity)

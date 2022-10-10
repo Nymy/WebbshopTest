@@ -12,7 +12,7 @@ public class Person {
 static public Collection searchUser(String u, String p){
     return PersonDB.searchUser(u,p);
 }
-    public Person(String fname, String lname, int postcode, String username, String password) {
+    protected Person(String fname, String lname, int postcode, String username, String password) {
         this.fname = fname;
         this.lname = lname;
         this.postcode = postcode;
