@@ -14,12 +14,14 @@ public class CartHandler {
         ArrayList<CartInfo> cart = new ArrayList<CartInfo>();
         for (Iterator it = c.iterator(); it.hasNext();){
             Cart cItem = (Cart) it.next();
-            CartInfo temp = new CartInfo(cItem.getOrderID(), cItem.getTotal_amount(), cItem.getUserID());
-            ArrayList<Item> itemArrayList = cItem.getItems();
-            for(int i = 0; i < itemArrayList.size(); i++){
-                temp.addItems(itemArrayList.get(i).getiName(), itemArrayList.get(i).getPrice(), itemArrayList.get(i).getItemID(), itemArrayList.get(i).getQuantity());
+            if(cItem != null) {
+                CartInfo temp = new CartInfo(cItem.getOrderID(), cItem.getTotal_amount(), cItem.getUserID());
+                ArrayList<Item> itemArrayList = cItem.getItems();
+                for (int i = 0; i < itemArrayList.size(); i++) {
+                    temp.addItems(itemArrayList.get(i).getiName(), itemArrayList.get(i).getPrice(), itemArrayList.get(i).getItemID(), itemArrayList.get(i).getQuantity());
+                }
+                cart.add(temp);
             }
-            cart.add(temp);
         }
         return cart;
     }
