@@ -10,6 +10,11 @@ public class CartDB extends bo.Cart{
         super(orderID, userID);
     }
 
+    /**
+     * Preforms a search in the database for the cart of a user with all the items insides
+     * @param username
+     * @return Cart inform of a collection
+     */
     public static Collection showCart(String username){
         Connection con ;
         Vector v = new Vector();
@@ -44,6 +49,11 @@ public class CartDB extends bo.Cart{
         return v;
     }
 
+    /**
+     * Removes item from a users cart
+     * @param itemID id of item to be removed
+     * @param orderID id of the users order
+     */
     public static void removeFromCart(int itemID, int orderID){
         try{
             Connection con = dbManager.getConnection();
@@ -55,6 +65,11 @@ public class CartDB extends bo.Cart{
             e.printStackTrace();}
     }
 
+    /**
+     * Add item to a users cart
+     * @param username name of the user who wants to add the item
+     * @param itemId id of the item to be added
+     */
     public static void addToCart(String username, int itemId){
         Connection con = null;
         try{

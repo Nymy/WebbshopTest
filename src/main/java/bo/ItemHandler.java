@@ -7,7 +7,11 @@ import java.util.Iterator;
 
 public class ItemHandler {
 
-public static Collection<ItemInfo> getItems(){
+    /**
+     * Get items from database
+     * @return arraylist of items
+     */
+    public static Collection<ItemInfo> getItems(){
     Collection c = Item.searchItems();
     ArrayList<ItemInfo> items = new ArrayList<ItemInfo>();
     for (Iterator it = c.iterator(); it.hasNext();){

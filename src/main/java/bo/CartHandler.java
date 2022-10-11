@@ -2,13 +2,17 @@ package bo;
 
 import ui.CartInfo;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
 public class CartHandler {
 
+    /**
+     * Get cart from database
+     * @param username userID
+     * @return arraylist of items in cart
+     */
     public static Collection<CartInfo> showCart(String username){
         Collection c = Cart.showCart(username);
         ArrayList<CartInfo> cart = new ArrayList<CartInfo>();

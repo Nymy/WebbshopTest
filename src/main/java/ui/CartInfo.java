@@ -1,10 +1,14 @@
 package ui;
 
-import bo.cartStatus;
+
 
 import java.util.ArrayList;
 
 public class CartInfo {
+
+    enum cartStatus {
+        PROCESSING, PACKED, SENT;
+    }
     private int orderID;
 
     private String userID;
@@ -19,12 +23,6 @@ public class CartInfo {
         items = null;
     }
 
-    public CartInfo(int orderID, String userID, ArrayList itemsincart) {
-        this.orderID = orderID;
-        this.userID = userID;
-        this.status = cartStatus.PROCESSING;
-        items = itemsincart;
-    }
 
     public int getOrderID() {
         return orderID;

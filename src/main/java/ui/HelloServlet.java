@@ -20,12 +20,10 @@ public class HelloServlet extends HttpServlet {
         message = "Hello World!";
     }
 
-
     /**
-     * Check with the database if the username and password exists.
-     *
-     * @param req  HTTP servlet request
-     * @param resp HTTP servlet response
+     * Check which task it is to be done and call the right function
+     * @param req
+     * @param resp
      * @throws ServletException
      * @throws IOException
      */
@@ -59,20 +57,19 @@ public class HelloServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Check if user exists in database, redirects to homePage if exists otherwise errorLogin
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         HttpSession session = req.getSession();
         String username = req.getParameter("user");
         String pwd = req.getParameter("pass");
         RequestDispatcher dis;
 
-        if (username == null || username.equals("")) {
-            dis = req.getRequestDispatcher("/errorLogin.jsp");
-            dis.forward(req, resp);
-        }
-        if (pwd == null || pwd.equals("")) {
-            dis = req.getRequestDispatcher("/errorLogin.jsp");
-            dis.forward(req, resp);
-        }
         try {
             Collection<PersonInfo> person = PersonHandler.getPerson(username, pwd);
             Iterator<PersonInfo> p = person.iterator();
@@ -93,6 +90,13 @@ public class HelloServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Logout user by removing session attribute and redirect to index
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     private void logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         HttpSession session = req.getSession();
         RequestDispatcher dis;
@@ -101,6 +105,14 @@ public class HelloServlet extends HttpServlet {
         dis.forward(req, resp);
     }
 
+    /**
+     * get item list from itemhandler and set HttpServletRequest attribute
+     * redirect to homePage
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     private void getAllItems(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         RequestDispatcher dis;
         try {
@@ -113,6 +125,13 @@ public class HelloServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Add items to cart
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     private void addItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         try {
             CartHandler.addToCart(req.getParameter("user"), Integer.valueOf(req.getParameter("itemId")));
@@ -123,6 +142,13 @@ public class HelloServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Remove item from cart
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     private void removeItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         try {
             CartHandler.removeFromCart( Integer.valueOf(req.getParameter("itemId")), Integer.valueOf(req.getParameter("orderID")));
@@ -133,6 +159,13 @@ public class HelloServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Get cart from database and redirect to cart.jsp
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     private void showCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         RequestDispatcher dis;
         try {
@@ -150,6 +183,4 @@ public class HelloServlet extends HttpServlet {
         }
     }
 
-    public void destroy() {
-    }
 }

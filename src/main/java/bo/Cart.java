@@ -5,20 +5,38 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Cart {
-
+    enum cartStatus {
+        PROCESSING, PACKED, SENT;
+    }
+    
     private int orderID;
     private String userID;
     private cartStatus status;
     private ArrayList<Item> items;
 
-
+    /**
+     * Get cart from cartDB
+     * @param username userID
+     * @return collection of cart from cartDB
+     */
     static public Collection showCart(String username){
         return CartDB.showCart(username);
     }
+
+    /**
+     * add items to cartDB
+     * @param username userID
+     * @param itemID itemID
+     */
     static public void addToCart(String username, int itemID){
         CartDB.addToCart(username, itemID);
     }
 
+    /**
+     * remove items from cart by calling function in cartDB
+     * @param itemID
+     * @param orderID
+     */
     static public void removeFromCart( int itemID, int orderID){
         CartDB.removeFromCart( itemID, orderID);
     }

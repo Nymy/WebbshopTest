@@ -9,9 +9,11 @@ public class Person {
     private int postcode;
     private String username;
     private String password;
+
 static public Collection searchUser(String u, String p){
     return PersonDB.searchUser(u,p);
 }
+
     protected Person(String fname, String lname, int postcode, String username, String password) {
         this.fname = fname;
         this.lname = lname;

@@ -9,6 +9,10 @@ public class Item {
     private int price;
     private int quantity;
 
+    /**
+     * Search for items
+     * @return Collection of items from DB
+     */
     static public Collection searchItems(){
         return ItemDB.searchItems();
     }

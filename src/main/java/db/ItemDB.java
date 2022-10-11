@@ -7,6 +7,10 @@ import java.util.Vector;
 
 public class ItemDB extends bo.Item{
 
+    /**
+     * search after all available items in the database
+     * @return Collection of all the items
+     */
     public static Collection searchItems(){
         Vector v = new Vector();
         try {
